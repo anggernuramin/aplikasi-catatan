@@ -6,7 +6,7 @@ const Header = ({ title, description }) => {
     <header>
       <div className="container wrapper-head-bar">
         <div className="head-bar-image">
-          <img src="../../public/head-bar-image.png" alt="header image" />
+          <img src="/head-bar-image.png" alt="header image" />
         </div>
         <div className="head-bar-content">
           <h1>{title}</h1>
