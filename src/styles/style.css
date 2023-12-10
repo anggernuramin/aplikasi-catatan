@@ -48,9 +48,12 @@ body {
 .wrapper-icon-home{
   display: flex;
   gap: 10px;
-  justify-content: start;
+  justify-content: end;
   align-items: center;
   text-decoration: none;
+  width: 100%;
+  padding-right: 22px;
+  margin-bottom: 5px;
 }
 .wrapper-icon-home:hover{
   columns: var(--primary-color);
@@ -70,7 +73,6 @@ body {
   position: fixed;
   bottom: 8%;
   right: 12%;
-  background-color: white;
   display: flex;
   gap: 20px;
 }
@@ -88,6 +90,7 @@ align-items: center;
 box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 font-weight: normal;
 font-size: 24px;
+color: var(--btn-color);
 }
 /* icon delete - archive end */
 
@@ -198,7 +201,7 @@ header .container {
   align-items: center;
 }
 .btn-archives{
-  padding: 9px 40px;
+  padding: 9px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,7 +281,7 @@ header .container {
   display: flex;
   flex-direction: column;
 }
-.input-section .input textarea {
+.input-section .input .catatan {
   margin-top: 3px;
   padding: 10px;
   font-size: 16px;
@@ -303,7 +306,6 @@ header .container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  
   gap: 10px;
   padding: 20px 10px 50px 20px;
   border-radius: 8px;
@@ -346,7 +348,7 @@ header .container {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-right: 10px;
+  margin-right: 13px;
 }
 .Catatan-shelf .card-catatan:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -438,6 +440,54 @@ header .container {
 }
 /* show catatan end */
 
+/* error page start */
+.container-error {
+    background-color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.container-error h3 {
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    line-height: 130%;
+    margin-block: 20px;
+}
+
+.container-error .buton {
+    background: #3498db;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.container-error a:hover {
+    color: #ff0;
+}
+
+.container-error span {
+    font-size: 14px;
+    color: #FFF;
+    font-weight: normal;
+    text-align: center;
+}
+
+.container-error span a {
+    color: #FF0;
+    text-decoration: none;
+}
+
+.container-error span a:hover {
+    color: #F00;
+}
+/* error page end */
+
 @media (min-width: 768px) and (max-width: 829px) {
   #searchCatatan input {
     width: 55%;
@@ -459,6 +509,15 @@ header .container {
   .container {
     width: 90%;
   }
+  .container-error img {
+    width: 70%;
+}
+.container-error {
+    padding: 70px 10px 10px 10px;
+}
+.container-error h3 {
+    font-size: 14px;
+}
   header .container {
     height: 300px;
   }
@@ -543,5 +602,14 @@ header .container {
   .wrapper-confirm-delete-all {
     width: 330px;
     height: 205px;
+  }
+  .wrapper-icon-delete-archive {
+    bottom: 3%;
+  }
+  .wrapper-icon-plus {
+   
+    bottom: 3%;
+    right: 12%;
+   
   }
 }

@@ -21,7 +21,8 @@ const ArchivePage = () => {
             </Link>
             <CardNoted
               noted={getArchivedNotes()}
-              messageError="Tidak ada catatan Archive"
+              messageError="Arsip kosong"
+              path="/archives/notes"
             />
           </div>
         </div>

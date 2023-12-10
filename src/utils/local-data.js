@@ -1,3 +1,4 @@
+
 let notes = [
   {
     id: 'notes-1',
@@ -68,6 +69,7 @@ function addNote({ title, body }) {
   }];
 }
 
+
 function deleteNote(id) {
   notes = notes.filter((note) => note.id !== id);
 }
@@ -86,7 +88,6 @@ function unarchiveNote(id) {
     if (note.id === id) {
       return { ...note, archived: false };
     }
-
     return note;
   });
 }
