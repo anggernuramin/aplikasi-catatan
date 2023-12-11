@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { FaClosedCaptioning } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getNote } from "../utils/local-data";
 
-const FormNoted = ({ page, title, setTitle, body, setBody, submitNoted }) => {
+const FormNoted = ({ page, title, setTitle, setBody, submitNoted }) => {
+  const { id } = useParams();
+  const [detailNote, setDetailNote] = useState({});
+
+  const bodyRef = useRef();
+  useEffect(() => {
+    setDetailNote(getNote(id));
+  }, [id]);
+
+  useEffect(() => {
+    if (detailNote && page == "Edit") {
+      bodyRef.current.innerHTML = detailNote?.body;
+    }
+  }, [detailNote]);
+
   return (
     <section className="wrapper-input-section">
       <div className="input-section">
@@ -12,14 +27,34 @@ const FormNoted = ({ page, title, setTitle, body, setBody, submitNoted }) => {
             <div className="label-judul">
               <label htmlFor="inputCatatanTitle">Judul</label>
             </div>
-            <input id="inputCatatanTitle" type="text" required placeholder="Tulis judul catatan" value={title ? title : title} onChange={(e) => setTitle(e.target.value)} />
+            <input
+              id="inputCatatanTitle"
+              type="text"
+              required
+              placeholder="Tulis judul catatan"
+              value={title ? title : title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <div className="input">
             <label htmlFor="inputCatatanCatatan">Catatan</label>
-            {page == "Add" ? (
-              <div className="catatan" data-placeholder="Tulis catatan Anda disini...." contentEditable onInput={(e) => setBody(e.target.innerHTML)}></div>
+            {page == "Edit" ? (
+              <div
+                id="inputCatatanCatatan"
+                ref={bodyRef}
+                className="catatan"
+                data-placeholder="Tulis catatan Anda disini...."
+                contentEditable
+                onInput={(e) => setBody(e.target.innerHTML)}
+              ></div>
             ) : (
-              <textarea className="catatan" value={body} onChange={(e) => setBody(e.target.value)}></textarea>
+              <div
+                id="inputCatatanCatatan"
+                className="catatan"
+                data-placeholder="Tulis catatan Anda disini...."
+                contentEditable
+                onInput={(e) => setBody(e.target.innerHTML)}
+              ></div>
             )}
           </div>
 

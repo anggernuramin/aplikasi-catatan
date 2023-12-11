@@ -2,6 +2,7 @@ import React from "react";
 import { showFormattedDate } from "../utils";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import parse from "html-react-parser";
 
 const CardNoted = ({ noted, messageError, path }) => {
   return (
@@ -16,7 +17,7 @@ const CardNoted = ({ noted, messageError, path }) => {
             >
               <h3>{data.title}</h3>
               <span>{showFormattedDate(data.createdAt)}</span>
-              <p>{data.body}</p>
+              <p>{parse(data.body)}</p>
             </Link>
           );
         })

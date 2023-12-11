@@ -15,14 +15,30 @@ const SearchNoted = ({ setNoted, dataNoted, titleArsip }) => {
     changeSearchParams(keyword);
   };
 
-  useEffect(() => {}, [keyword]);
+  useEffect(() => {
+    if (keyword) {
+      setNoted(
+        dataNoted.filter((item) =>
+          item.title.toLowerCase().includes(keyword.toLocaleLowerCase())
+        )
+      );
+    } else {
+      setNoted(dataNoted);
+    }
+  }, [keyword]);
 
   return (
     <div className="container">
       <div className="wrapper-search">
         <section className="search-section">
           <label htmlFor="searchCatatanTitle">Judul</label>
-          <input id="searchCatatanTitle" placeholder="Cari berdasarkan Judul .... " type="search" value={keyword} onChange={handleKeywordChange} />
+          <input
+            id="searchCatatanTitle"
+            placeholder="Cari berdasarkan Judul .... "
+            type="search"
+            value={keyword ? keyword : ""}
+            onChange={handleKeywordChange}
+          />
           <button id="searchSubmit" type="submit">
             Cari
           </button>
@@ -39,9 +55,9 @@ const SearchNoted = ({ setNoted, dataNoted, titleArsip }) => {
 };
 
 SearchNoted.propTypes = {
-  keyword: PropTypes.string.isRequired,
-  titleArsip: PropTypes.string.isRequired,
-  handleKeywordChange: PropTypes.func.isRequired,
+  titleArsip: PropTypes.string,
+  setNoted: PropTypes.func.isRequired,
+  dataNoted: PropTypes.array.isRequired,
 };
 
 export default SearchNoted;

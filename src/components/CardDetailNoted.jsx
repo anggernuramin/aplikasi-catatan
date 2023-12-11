@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { showFormattedDate } from "../utils";
+import parse from "html-react-parser";
 
-const CardDetailNoted = ({ title, createdAt, body }) => {
+const CardDetailNoted = ({ detailNoted }) => {
+  const [body, setBody] = useState("");
+
+  useEffect(() => {
+    if (detailNoted) {
+      setBody(detailNoted.body);
+    }
+  }, [detailNoted]);
   return (
     <div className="card-detail-catatan">
-      <h3>{title}</h3>
-      <span>{showFormattedDate(createdAt)}</span>
-      <p>{body}</p>
+      <h3>{detailNoted?.title}</h3>
+      <span>{showFormattedDate(detailNoted?.createdAt)}</span>
+      <p>{typeof body == "string" ? parse(body) : body}</p>
     </div>
   );
 };
 CardDetailNoted.propTypes = {
-  title: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  detailNoted: PropTypes.object.isRequired,
 };
 export default CardDetailNoted;

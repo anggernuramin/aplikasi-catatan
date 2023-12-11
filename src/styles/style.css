@@ -575,12 +575,14 @@ header .container {
   }
   .btn-archives {
     margin-top: 0;
+    width: 500px;
   }
   .wrapper-Catatan-shelf {
     width: 100%;
   }
   .search-section {
     margin-block: 20px;
+    width: 100%;
   }
   #searchCatatan input {
     width: 50%;
