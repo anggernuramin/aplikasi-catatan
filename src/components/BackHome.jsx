@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 
 const BackHome = () => {
   return (
-    <Link to="/" className="wrapper-icon-home">
-      <FaHome className="icon-home" />
-      <p>Beranda</p>
-    </Link>
+    <div className="wrapper-icon-home">
+      <Link to="/">
+        <FaHome className="icon-home" />
+        <p>Beranda</p>
+      </Link>
+    </div>
   );
 };
 

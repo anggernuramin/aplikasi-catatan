@@ -8,7 +8,7 @@ const NotFoundPage = () => {
   };
   return (
     <div className="container">
-      <div className="container-error">
+      <section className="container-error">
         <img className="ops" src="/public/404.svg" />
         <br />
         <h3>
@@ -19,7 +19,7 @@ const NotFoundPage = () => {
         <a className="buton" onClick={goBack}>
           Kembali
         </a>
-      </div>
+      </section>
     </div>
   );
 };

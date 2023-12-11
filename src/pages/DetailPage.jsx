@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { getNote } from "../utils/local-data";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { showFormattedDate } from "../utils";
-import {
-  FaTrash,
-  FaArrowCircleDown,
-  FaArrowAltCircleUp,
-  FaHome,
-  FaPencilAlt,
-} from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
+import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
+import LayoutNoted from "../components/Layout/LayoutNoted";
+import CardDetailNoted from "../components/CardDetailNoted";
+import BackHome from "../components/BackHome";
 
 const DetailPage = () => {
-  const location = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [detailNote, setDetailNote] = useState({});
@@ -25,27 +20,12 @@ const DetailPage = () => {
 
   return (
     <>
-      <Header
-        title="Detail Noted Apps"
-        description="Detail catatan pribadi Anda dengan lebih Mudah."
-      />
-      <main className="container">
-        <div className="wrapper-main-content">
-          <div className="wrapper-Catatan-shelf">
-            <section className="Catatan-shelf">
-              <Link to="/" className="wrapper-icon-home">
-                <FaHome className="icon-home" />
-                <p>Back To Home </p>
-              </Link>
-
-              <div className="card-detail-catatan">
-                <h3>{detailNote.title}</h3>
-                <span>{showFormattedDate(detailNote.createdAt)}</span>
-                <p>{detailNote.body}</p>
-              </div>
-            </section>
-          </div>
-        </div>
+      <Header title="Detail Noted Apps" description="Detail catatan pribadi Anda dengan lebih Mudah." />
+      <LayoutNoted>
+        <section className="Catatan-shelf">
+          <BackHome />
+          <CardDetailNoted title={detailNote.title} createdAt={detailNote.createdAt} body={detailNote.body} />
+        </section>
         <div className="wrapper-icon-delete-archive">
           <div
             title="Hapus"
@@ -57,7 +37,6 @@ const DetailPage = () => {
           >
             <FaTrash />
           </div>
-
           {detailNote.archived == true ? (
             <div
               title="Aktifkan"
@@ -86,7 +65,7 @@ const DetailPage = () => {
             <FaPencilAlt />
           </Link>
         </div>
-      </main>
+      </LayoutNoted>
     </>
   );
 };

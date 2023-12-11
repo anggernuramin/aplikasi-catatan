@@ -5,6 +5,7 @@ import SearchNoted from "../components/SearchNoted";
 import CardNoted from "../components/CardNoted";
 import { FaPlus } from "react-icons/fa";
 import { getActiveNotes } from "../utils/local-data";
+import LayoutNoted from "../components/Layout/LayoutNoted";
 
 const HomePage = () => {
   const [noted, setNoted] = useState(getActiveNotes());
@@ -17,11 +18,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (keyword) {
-      setNoted(
-        getActiveNotes().filter((item) =>
-          item.title.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
+      setNoted(getActiveNotes().filter((item) => item.title.toLowerCase().includes(keyword.toLowerCase())));
     } else {
       setNoted(getActiveNotes());
     }
@@ -35,28 +32,14 @@ const HomePage = () => {
 
   return (
     <>
-      <Header
-        title="Noted Apps"
-        description="Mengelola catatan pribadi Anda dengan lebih Mudah.Siap Membantu Anda Mengelola catatan-catatan pribadi Anda dengan Lebih Efisien dan Menyenangkan."
-      />
-      <SearchNoted
-        keyword={keyword || ""}
-        handleKeywordChange={handleKeywordChange}
-      />
-      <main className="container">
-        <div className="wrapper-main-content">
-          <div className="wrapper-Catatan-shelf">
-            <CardNoted
-              noted={noted}
-              messageError="Tidak ada catatan"
-              path="/notes"
-            />
-          </div>
-        </div>
+      <Header title="Noted Apps" description="Mengelola catatan pribadi Anda dengan lebih Mudah.Siap Membantu Anda Mengelola catatan-catatan pribadi Anda dengan Lebih Efisien dan Menyenangkan." />
+      <SearchNoted setNoted={setNoted} dataNoted={getActiveNotes()} titleArsip="Lihat Note Arsip" />
+      <LayoutNoted>
+        <CardNoted noted={noted} messageError="Tidak ada catatan" path="/notes" />
         <Link title="Tambah" to="/notes/new" className="wrapper-icon-plus">
           <FaPlus className="icon-plus" />
         </Link>
-      </main>
+      </LayoutNoted>
     </>
   );
 };

@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const FormNoted = ({ page, title, setTitle, body, setBody, submitNoted }) => {
-  console.log("body", body);
   return (
     <section className="wrapper-input-section">
       <div className="input-section">
@@ -14,25 +12,15 @@ const FormNoted = ({ page, title, setTitle, body, setBody, submitNoted }) => {
             <div className="label-judul">
               <label htmlFor="inputCatatanTitle">Judul</label>
             </div>
-            <input
-              id="inputCatatanTitle"
-              type="text"
-              required
-              placeholder="Tulis judul catatan"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+            <input id="inputCatatanTitle" type="text" required placeholder="Tulis judul catatan" value={title ? title : title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="input">
             <label htmlFor="inputCatatanCatatan">Catatan</label>
-            <div
-              className="catatan"
-              data-placeholder="Tulis catatan Anda disini...."
-              contentEditable
-              onInput={(e) => setBody(e.target.innerHTML)}
-            >
-              {typeof body === "string" ? parse(body) : body}
-            </div>
+            {page == "Add" ? (
+              <div className="catatan" data-placeholder="Tulis catatan Anda disini...." contentEditable onInput={(e) => setBody(e.target.innerHTML)}></div>
+            ) : (
+              <textarea className="catatan" value={body} onChange={(e) => setBody(e.target.value)}></textarea>
+            )}
           </div>
 
           <button id="CatatanSubmit" type="submit">

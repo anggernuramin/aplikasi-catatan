@@ -12,25 +12,14 @@ const EditPage = () => {
   const [detailNote, setDetailNote] = useState({});
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  console.log(id);
 
   useEffect(() => {
     setDetailNote(getNote(id));
-    console.log(detailNote);
   }, [id]);
-
-  useEffect(() => {
-    if (detailNote) {
-      setTitle(detailNote?.title);
-      setBody(detailNote?.body);
-    }
-  }, [detailNote]);
 
   const submitEditNoted = (e) => {
     if (!title || !body) {
-      alert(
-        "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
-      );
+      alert("Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan.");
       return;
     }
     e.preventDefault();
@@ -43,20 +32,10 @@ const EditPage = () => {
   };
   return (
     <>
-      <Header
-        title="Edit Noted Apps"
-        description="Edit catatan pribadi Anda dengan lebih Mudah."
-      />
+      <Header title="Edit Noted Apps" description="Edit catatan pribadi Anda dengan lebih Mudah." />
       <LayoutNoted>
         <BackHome />
-        <FormNoted
-          page="Edit"
-          title={title}
-          body={body}
-          setTitle={setTitle}
-          setBody={setBody}
-          submitNoted={submitEditNoted}
-        />
+        <FormNoted page="Edit" title={detailNote?.title} body={detailNote?.body} setTitle={setTitle} setBody={setBody} submitNoted={submitEditNoted} />
       </LayoutNoted>
     </>
   );
