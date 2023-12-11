@@ -9,7 +9,7 @@ const NotFoundPage = () => {
   return (
     <div className="container">
       <section className="container-error">
-        <img className="ops" src="/public/404.svg" />
+        <img className="ops" src="/404.svg" />
         <br />
         <h3>
           Halaman yang Anda cari tidak ditemukan.
