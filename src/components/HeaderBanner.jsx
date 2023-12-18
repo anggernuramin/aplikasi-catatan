@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Header = ({ title, description }) => {
+const HeaderBanner = ({ title, description }) => {
   return (
     <header>
       <div className="container wrapper-head-bar">
@@ -18,9 +18,9 @@ const Header = ({ title, description }) => {
   );
 };
 
-Header.propTypes = {
+HeaderBanner.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default HeaderBanner;

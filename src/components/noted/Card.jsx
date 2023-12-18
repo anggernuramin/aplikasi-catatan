@@ -1,5 +1,5 @@
 import React from "react";
-import { showFormattedDate } from "../utils";
+import { showFormattedDate } from "../../utils";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import parse from "html-react-parser";
@@ -10,11 +10,7 @@ const CardNoted = ({ noted, messageError, path }) => {
       {noted?.length > 0 ? (
         noted?.map((data) => {
           return (
-            <Link
-              to={`${path}/${data.id}`}
-              key={data.id}
-              className="card-catatan"
-            >
+            <Link to={`${path}/${data.id}`} key={data.id} className="card-catatan">
               <h3>{data.title}</h3>
               <span>{showFormattedDate(data.createdAt)}</span>
               <p>{parse(data.body)}</p>
@@ -28,8 +24,15 @@ const CardNoted = ({ noted, messageError, path }) => {
   );
 };
 
+export const noteItemPropTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+};
+
 CardNoted.propTypes = {
-  noted: PropTypes.array,
+  noted: PropTypes.arrayOf(PropTypes.shape(noteItemPropTypes)).isRequired,
   messageError: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };

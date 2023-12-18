@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { showFormattedDate } from "../utils";
+import { showFormattedDate } from "../../utils";
 import parse from "html-react-parser";
 
 const CardDetailNoted = ({ detailNoted }) => {

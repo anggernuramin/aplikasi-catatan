@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import LayoutNoted from "../components/Layout/LayoutNoted";
 import BackHome from "../components/BackHome";
 import Header from "../components/Header";
-import FormNoted from "../components/FormNoted";
+import FormNoted from "../components/noted/FormNoted";
 import { useNavigate, useParams } from "react-router-dom";
 import { editNote, getNote } from "../utils/local-data";
+import LayoutNoted from "../Layout/LayoutNoted";
 
 const EditPage = () => {
   const navigate = useNavigate();
@@ -24,9 +24,7 @@ const EditPage = () => {
 
   const submitEditNoted = (e) => {
     if (!title || !body) {
-      alert(
-        "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
-      );
+      alert("Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan.");
       return;
     }
     e.preventDefault();
@@ -39,19 +37,10 @@ const EditPage = () => {
   };
   return (
     <>
-      <Header
-        title="Edit Noted Apps"
-        description="Ubah dan perbarui catatan pribadi Anda dengan mudah di halaman Edit Noted Apps. Edit judul dan body dengan cepat."
-      />
+      <Header title="Edit Noted Apps" description="Ubah dan perbarui catatan pribadi Anda dengan mudah di halaman Edit Noted Apps. Edit judul dan body dengan cepat." />
       <LayoutNoted>
         <BackHome />
-        <FormNoted
-          page="Edit"
-          title={title}
-          setTitle={setTitle}
-          setBody={setBody}
-          submitNoted={submitEditNoted}
-        />
+        <FormNoted page="Edit" title={title} setTitle={setTitle} setBody={setBody} submitNoted={submitEditNoted} />
       </LayoutNoted>
     </>
   );
