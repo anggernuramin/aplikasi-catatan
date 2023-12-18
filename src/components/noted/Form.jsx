@@ -4,7 +4,7 @@ import { FaClosedCaptioning } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { getNote } from "../../utils/local-data";
 
-const FormNoted = ({ page, title, setTitle, setBody, submitNoted }) => {
+const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
   const { id } = useParams();
   const [detailNote, setDetailNote] = useState({});
 
@@ -27,14 +27,34 @@ const FormNoted = ({ page, title, setTitle, setBody, submitNoted }) => {
             <div className="label-judul">
               <label htmlFor="inputCatatanTitle">Judul</label>
             </div>
-            <input id="inputCatatanTitle" type="text" required placeholder="Tulis judul catatan" value={title ? title : title} onChange={(e) => setTitle(e.target.value)} />
+            <input
+              id="inputCatatanTitle"
+              type="text"
+              required
+              placeholder="Tulis judul catatan"
+              value={title ? title : title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </div>
           <div className="input">
             <label htmlFor="inputCatatanCatatan">Catatan</label>
             {page == "Edit" ? (
-              <div id="inputCatatanCatatan" ref={bodyRef} className="catatan" data-placeholder="Tulis catatan Anda disini...." contentEditable onInput={(e) => setBody(e.target.innerHTML)}></div>
+              <div
+                id="inputCatatanCatatan"
+                ref={bodyRef}
+                className="catatan"
+                data-placeholder="Tulis catatan Anda disini...."
+                contentEditable
+                onInput={(e) => setBody(e.target.innerHTML)}
+              ></div>
             ) : (
-              <div id="inputCatatanCatatan" className="catatan" data-placeholder="Tulis catatan Anda disini...." contentEditable onInput={(e) => setBody(e.target.innerHTML)}></div>
+              <div
+                id="inputCatatanCatatan"
+                className="catatan"
+                data-placeholder="Tulis catatan Anda disini...."
+                contentEditable
+                onInput={(e) => setBody(e.target.innerHTML)}
+              ></div>
             )}
           </div>
 
@@ -54,7 +74,7 @@ const FormNoted = ({ page, title, setTitle, setBody, submitNoted }) => {
   );
 };
 
-FormNoted.propTypes = {
+Form.propTypes = {
   page: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   setTitle: PropTypes.func.isRequired,
@@ -62,4 +82,4 @@ FormNoted.propTypes = {
   submitNoted: PropTypes.func.isRequired,
 };
 
-export default FormNoted;
+export default Form;

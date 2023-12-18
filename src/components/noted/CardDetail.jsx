@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { showFormattedDate } from "../../utils";
 import parse from "html-react-parser";
 
-const CardDetailNoted = ({ detailNoted }) => {
+const CardDetail = ({ detailNoted }) => {
   const [body, setBody] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const CardDetailNoted = ({ detailNoted }) => {
     </div>
   );
 };
-CardDetailNoted.propTypes = {
+CardDetail.propTypes = {
   detailNoted: PropTypes.object.isRequired,
 };
-export default CardDetailNoted;
+export default CardDetail;

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import PropTypes from "prop-types";
 
-const SearchNoted = ({ setNoted, dataNoted, titleArsip }) => {
+const Search = ({ setNoted, dataNoted, titleArsip }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   let keyword = searchParams.get("keyword");
   const changeSearchParams = (keyword) => {
@@ -26,7 +26,13 @@ const SearchNoted = ({ setNoted, dataNoted, titleArsip }) => {
       <div className="wrapper-search">
         <section className="search-section">
           <label htmlFor="searchCatatanTitle">Judul</label>
-          <input id="searchCatatanTitle" placeholder="Cari berdasarkan Judul .... " type="search" value={keyword} onChange={handleKeywordChange} />
+          <input
+            id="searchCatatanTitle"
+            placeholder="Cari berdasarkan Judul .... "
+            type="search"
+            value={keyword}
+            onChange={handleKeywordChange}
+          />
           <button id="searchSubmit" type="submit">
             Cari
           </button>
@@ -42,10 +48,10 @@ const SearchNoted = ({ setNoted, dataNoted, titleArsip }) => {
   );
 };
 
-SearchNoted.propTypes = {
+Search.propTypes = {
   keyword: PropTypes.string.isRequired,
   titleArsip: PropTypes.string.isRequired,
   handleKeywordChange: PropTypes.func.isRequired,
 };
 
-export default SearchNoted;
+export default Search;

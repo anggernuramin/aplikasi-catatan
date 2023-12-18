@@ -136,13 +136,21 @@ body {
   flex-direction: column;
 }
 .wrapper-register {
-  margin-top: 20px;
+  margin-block: 20px;
   width: 470px;
   background-color: var(--primary-color);
   border-radius: 10px;
   padding: 20px;
   font-size: 15px;
-  margin-bottom: 20px;
+}
+.wrapper-login {
+    margin-top: -10px;
+    width: 470px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 15px;
+    margin-bottom: 60px;
 }
 .wrapper-register form h1 {
   margin-top: 10px;
@@ -169,9 +177,23 @@ body {
 .form-register input {
   background-color: var(--primary-color);
 }
+.form-register button {
+  margin-top: 20px;
+}
 .keterangan-register {
   margin-block: 20px;
   font-size: 18px;
+}
+.input-password {
+  position: relative;
+}
+.input-password .eye-password{
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+  top: 25%;
+  right: 3%;
+
 }
 /* register end */
 

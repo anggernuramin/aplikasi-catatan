@@ -8,7 +8,7 @@ import DetailPage from "./pages/DetailPage";
 import ArchivePage from "./pages/ArchivePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import EditPage from "./pages/EditPage";
-import Register from "./components/Auth/Register";
+import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 const root = createRoot(document.getElementById("root"));

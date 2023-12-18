@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
 import { getNote } from "../utils/local-data";
 import { Link, useParams } from "react-router-dom";
-import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
+import {
+  FaTrash,
+  FaArrowCircleDown,
+  FaArrowAltCircleUp,
+  FaHome,
+  FaPencilAlt,
+} from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 import LayoutNoted from "../Layout/LayoutNoted";
-import CardDetailNoted from "../components/noted/CardDetailNoted";
 import BackHome from "../components/BackHome";
+import HeaderBanner from "../components/HeaderBanner";
+import CardDetail from "../components/noted/CardDetail";
 
 const DetailPage = () => {
   const { id } = useParams();
@@ -20,11 +26,14 @@ const DetailPage = () => {
 
   return (
     <>
-      <Header title="Detail Noted Apps" description="Lihat dan kelola detail catatan Anda di halaman Detail Noted Apps. Temukan informasi lengkap mengenai catatan yang Anda pilih." />
+      <HeaderBanner
+        title="Detail Noted Apps"
+        description="Lihat dan kelola detail catatan Anda di halaman Detail Noted Apps. Temukan informasi lengkap mengenai catatan yang Anda pilih."
+      />
       <LayoutNoted>
         <section className="Catatan-shelf">
           <BackHome />
-          <CardDetailNoted detailNoted={detailNote} />
+          <CardDetail detailNoted={detailNote} />
         </section>
         <div className="wrapper-icon-delete-archive">
           <div
