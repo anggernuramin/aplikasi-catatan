@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getArchivedNotes } from "../utils/local-data";
 import LayoutNoted from "../Layout/LayoutNoted";
 import BackHome from "../components/BackHome";
@@ -10,18 +10,11 @@ function ArchivePage() {
   const [noted, setNoted] = useState(getArchivedNotes());
   return (
     <>
-      <HeaderBanner
-        title="Archive Noted Apps"
-        description="Simpan dan kelola catatan Anda dengan Archive Noted Apps. Lihat dan kelola catatan yang sudah diarsipkan di sini."
-      />
+      <HeaderBanner title="Archive Noted Apps" description="Simpan dan kelola catatan Anda dengan Archive Noted Apps. Lihat dan kelola catatan yang sudah diarsipkan di sini." />
       <Search setNoted={setNoted} dataNoted={getArchivedNotes()} />
       <LayoutNoted>
         <BackHome />
-        <Card
-          noted={noted}
-          messageError="Arsip kosong"
-          path="/archives/notes"
-        />
+        <Card noted={noted} messageError="Arsip kosong" path="/archives/notes" />
       </LayoutNoted>
     </>
   );

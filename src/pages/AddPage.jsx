@@ -10,11 +10,10 @@ const AddPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+
   const submitAddNoted = (e) => {
     if (!title || !body) {
-      alert(
-        "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
-      );
+      alert("Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan.");
       return;
     }
     e.preventDefault();
@@ -27,20 +26,10 @@ const AddPage = () => {
 
   return (
     <>
-      <HeaderBanner
-        title="Add Noted Apps"
-        description="Buat catatan pribadi Anda dengan mudah. Isilah form di bawah untuk menambahkan catatan baru."
-      />
+      <HeaderBanner title="Add Noted Apps" description="Buat catatan pribadi Anda dengan mudah. Isilah form di bawah untuk menambahkan catatan baru." />
       <LayoutNoted>
         <BackHome />
-        <Form
-          page="Add"
-          title={title}
-          setTitle={setTitle}
-          body={body}
-          setBody={setBody}
-          submitNoted={submitAddNoted}
-        />
+        <Form page="Add" title={title} setTitle={setTitle} body={body} setBody={setBody} submitNoted={submitAddNoted} />
       </LayoutNoted>
     </>
   );

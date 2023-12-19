@@ -1,9 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { getActiveNotes } from "../../utils/local-data";
 
-const Search = ({ setNoted, dataNoted, titleArsip }) => {
+const Search = ({ setNoted, titleArsip }) => {
+  const [notedActive, setNotedActive] = useState();
+  useEffect(() => {
+    (async () => {
+      const { data } = await getActiveNotes();
+      setNotedActive(data);
+      console.log(data, "res");
+    })();
+  }, []);
+
   const [searchParams, setSearchParams] = useSearchParams();
   let keyword = searchParams.get("keyword");
   const changeSearchParams = (keyword) => {
@@ -17,7 +27,9 @@ const Search = ({ setNoted, dataNoted, titleArsip }) => {
 
   useEffect(() => {
     if (keyword) {
-      setNoted(dataNoted);
+      setNoted(notedActive.filter((item) => item.title.toLowerCase().includes(keyword.toLocaleLowerCase())));
+    } else {
+      setNoted(notedActive);
     }
   }, [keyword]);
 
@@ -26,13 +38,7 @@ const Search = ({ setNoted, dataNoted, titleArsip }) => {
       <div className="wrapper-search">
         <section className="search-section">
           <label htmlFor="searchCatatanTitle">Judul</label>
-          <input
-            id="searchCatatanTitle"
-            placeholder="Cari berdasarkan Judul .... "
-            type="search"
-            value={keyword}
-            onChange={handleKeywordChange}
-          />
+          <input id="searchCatatanTitle" placeholder="Cari berdasarkan Judul .... " type="search" value={keyword} onChange={handleKeywordChange} />
           <button id="searchSubmit" type="submit">
             Cari
           </button>

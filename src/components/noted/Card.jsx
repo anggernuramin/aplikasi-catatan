@@ -10,11 +10,7 @@ const Card = ({ noted, messageError, path }) => {
       {noted?.length > 0 ? (
         noted?.map((data) => {
           return (
-            <Link
-              to={`${path}/${data.id}`}
-              key={data.id}
-              className="card-catatan"
-            >
+            <Link to={`${path}/${data.id}`} key={data.id} className="card-catatan">
               <h3>{data.title}</h3>
               <span>{showFormattedDate(data.createdAt)}</span>
               <p>{parse(data.body)}</p>

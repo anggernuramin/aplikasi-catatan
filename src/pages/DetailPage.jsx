@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getNote } from "../utils/local-data";
 import { Link, useParams } from "react-router-dom";
-import {
-  FaTrash,
-  FaArrowCircleDown,
-  FaArrowAltCircleUp,
-  FaHome,
-  FaPencilAlt,
-} from "react-icons/fa";
+import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 import LayoutNoted from "../Layout/LayoutNoted";
@@ -21,15 +15,17 @@ const DetailPage = () => {
   const [detailNote, setDetailNote] = useState({});
 
   useEffect(() => {
-    setDetailNote(getNote(id));
+    (async () => {
+      const { data } = await getNote(id);
+      if (data) {
+        setDetailNote(data);
+      }
+    })();
   }, [id]);
 
   return (
     <>
-      <HeaderBanner
-        title="Detail Noted Apps"
-        description="Lihat dan kelola detail catatan Anda di halaman Detail Noted Apps. Temukan informasi lengkap mengenai catatan yang Anda pilih."
-      />
+      <HeaderBanner title="Detail Noted Apps" description="Lihat dan kelola detail catatan Anda di halaman Detail Noted Apps. Temukan informasi lengkap mengenai catatan yang Anda pilih." />
       <LayoutNoted>
         <section className="Catatan-shelf">
           <BackHome />

@@ -8,8 +8,8 @@ import DetailPage from "./pages/DetailPage";
 import ArchivePage from "./pages/ArchivePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import EditPage from "./pages/EditPage";
-import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
