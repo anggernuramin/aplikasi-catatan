@@ -10,7 +10,11 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
 
   const bodyRef = useRef();
   useEffect(() => {
-    setDetailNote(getNote(id));
+    (async () => {
+      const { data } = await getNote(id);
+      setDetailNote(data);
+      console.log(data, "res");
+    })();
   }, [id]);
 
   useEffect(() => {

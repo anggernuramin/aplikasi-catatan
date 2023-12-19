@@ -47,31 +47,72 @@ const Register = () => {
       <div className="container-register">
         <Navbar />
         <div className="wrapper-register">
-          <form onSubmit={userRegister} act className="form-register">
-            <Header title="Register" description="Isi form untuk mendaftar akun" />
+          <form onSubmit={userRegister} className="form-register">
+            <Header
+              title="Register"
+              description="Isi form untuk mendaftar akun"
+            />
             <div className="input">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required onChange={setName} value={name} />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                onChange={setName}
+                value={name}
+              />
             </div>
             <div className="input">
-              <label htmlFor="emal">Email</label>
-              <input type="email" id="email" name="email" required onChange={setEmail} value={email} />
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                onChange={setEmail}
+                value={email}
+              />
             </div>
             <div className="input">
               <label htmlFor="password">Password</label>
               <div className="input-password">
-                <input id="password" type={showPassword ? "text" : "password"} name="password" required autoComplete={true.toString()} onChange={setPassword} value={password} />
-                <ActionPassword showPassword={showPassword} onShowHandlerPassword={onShowHandlerPassword} />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  autoComplete="true"
+                  onChange={setPassword}
+                  value={password}
+                />
+                <ActionPassword
+                  showPassword={showPassword}
+                  onShowHandlerPassword={onShowHandlerPassword}
+                />
               </div>
             </div>
             <div className="input">
               <label htmlFor="confirmPassword">Confirm Password</label>
               <div className="input-password">
-                <input id="confirmPassword" type={showConfirmPassword ? "text" : "password"} autoComplete="true" required name="confirmPassword" onChange={setConfirmPassword} value={confirmPassword} />
-                <ActionPassword showPassword={showConfirmPassword} onShowHandlerPassword={onShowHandlerConfirmPassword} />
+                <input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  autoComplete="true"
+                  required
+                  name="confirmPassword"
+                  onChange={setConfirmPassword}
+                  value={confirmPassword}
+                />
+                <ActionPassword
+                  showPassword={showConfirmPassword}
+                  onShowHandlerPassword={onShowHandlerConfirmPassword}
+                />
               </div>
             </div>
-            <button type="submit">{loading ? "Loading . . ." : "Register"}</button>
+            <button type="submit">
+              {loading ? "Loading . . ." : "Register"}
+            </button>
           </form>
           <p className="keterangan-register">
             sudah punya akun?{""} <Link to="/login">Login</Link>

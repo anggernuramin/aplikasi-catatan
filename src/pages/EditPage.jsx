@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BackHome from "../components/BackHome";
 import { useNavigate, useParams } from "react-router-dom";
-// import { editNote, getNote } from "../utils/local-data";
+import { getNote } from "../utils/local-data";
 import LayoutNoted from "../Layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Form from "../components/noted/Form";
@@ -14,8 +14,13 @@ const EditPage = () => {
   const [body, setBody] = useState("");
 
   useEffect(() => {
-    setDetailNote(getNote(id));
+    (async () => {
+      const { data } = await getNote(id);
+      setDetailNote(data);
+      console.log(data, "res");
+    })();
   }, [id]);
+
   useEffect(() => {
     if (detailNote.title) {
       setTitle(detailNote?.title);
@@ -24,23 +29,34 @@ const EditPage = () => {
 
   const submitEditNoted = (e) => {
     if (!title || !body) {
-      alert("Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan.");
+      alert(
+        "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
+      );
       return;
     }
     e.preventDefault();
-    editNote({
-      id,
-      title,
-      body,
-    });
+    // editNote({
+    //   id,
+    //   title,
+    //   body,
+    // });
     navigate("/");
   };
   return (
     <>
-      <HeaderBanner title="Edit Noted Apps" description="Ubah dan perbarui catatan pribadi Anda dengan mudah di halaman Edit Noted Apps. Edit judul dan body dengan cepat." />
+      <HeaderBanner
+        title="Edit Noted Apps"
+        description="Ubah dan perbarui catatan pribadi Anda dengan mudah di halaman Edit Noted Apps. Edit judul dan body dengan cepat."
+      />
       <LayoutNoted>
         <BackHome />
-        <Form page="Edit" title={title} setTitle={setTitle} setBody={setBody} submitNoted={submitEditNoted} />
+        <Form
+          page="Edit"
+          title={title}
+          setTitle={setTitle}
+          setBody={setBody}
+          submitNoted={submitEditNoted}
+        />
       </LayoutNoted>
     </>
   );
