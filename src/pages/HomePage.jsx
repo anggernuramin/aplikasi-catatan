@@ -6,8 +6,11 @@ import LayoutNoted from "../Layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Search from "../components/noted/Search";
 import Card from "../components/noted/Card";
+import { useChangeLanguage } from "../hooks/useChangeLanguage";
+import { home } from "../utils/content-bahasa";
 
 const HomePage = () => {
+  const { language } = useChangeLanguage();
   const [noted, setNoted] = useState([]);
   const [dataNotedOriginal, setDataNotedOriginal] = useState([]);
 
@@ -26,10 +29,25 @@ const HomePage = () => {
 
   return (
     <>
-      <HeaderBanner title="Noted Apps" description="Mengelola catatan pribadi Anda dengan lebih Mudah.Siap Membantu Anda Mengelola catatan-catatan pribadi Anda dengan Lebih Efisien dan Menyenangkan." />
-      <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} titleArsip="Lihat Note Arsip" />
+      <HeaderBanner
+        title={home[language].title} //gunakan property accessor [] agar data bisa dinamis sesuai bahasa / home.language.title
+        description={home[language].description}
+      />
+      <Search
+        setNoted={setNoted}
+        dataNotedOriginal={dataNotedOriginal}
+        titleArsip={
+          language === "id" ? "Lihat Note Arsip" : "View Archived Notes"
+        }
+      />
       <LayoutNoted>
-        <Card noted={noted} messageError="Tidak ada catatan" path="/notes" />
+        <Card
+          noted={noted}
+          messageError={
+            language === "id" ? "Tidak ada catatan" : "No notes available."
+          }
+          path="/notes"
+        />
         <Link title="Tambah" to="/notes/new" className="wrapper-icon-plus">
           <FaPlus className="icon-plus" />
         </Link>

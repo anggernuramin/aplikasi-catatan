@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import BackHome from "../components/BackHome";
 import { useNavigate, useParams } from "react-router-dom";
 import { getNote } from "../utils/local-data";
+import { edit } from "../utils/content-bahasa";
 import LayoutNoted from "../Layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Form from "../components/noted/Form";
+import { useChangeLanguage } from "../hooks/useChangeLanguage";
 
 const EditPage = () => {
+  const { language } = useChangeLanguage();
   const navigate = useNavigate();
   const { id } = useParams();
   const [detailNote, setDetailNote] = useState({});
@@ -28,13 +31,17 @@ const EditPage = () => {
   }, [detailNote]);
 
   const submitEditNoted = (e) => {
+    e.preventDefault();
+
     if (!title || !body) {
-      alert(
-        "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
-      );
+      const messageWarning =
+        language === "id"
+          ? "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
+          : "Input cannot be empty. Please make sure to fill in the Title and Notes.";
+      alert(messageWarning);
+      e.preventDefault();
       return;
     }
-    e.preventDefault();
     // editNote({
     //   id,
     //   title,
@@ -45,8 +52,8 @@ const EditPage = () => {
   return (
     <>
       <HeaderBanner
-        title="Edit Noted Apps"
-        description="Ubah dan perbarui catatan pribadi Anda dengan mudah di halaman Edit Noted Apps. Edit judul dan body dengan cepat."
+        title={edit[language].title}
+        description={edit[language].description}
       />
       <LayoutNoted>
         <BackHome />

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const ThemeContext = createContext();
 
@@ -17,5 +17,9 @@ export const ThemeContextProvider = ({ children }) => {
     toggleTheme,
   };
 
-  return <ThemeContext.Provider value={initialState}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={initialState}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

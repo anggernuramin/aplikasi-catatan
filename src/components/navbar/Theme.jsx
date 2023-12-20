@@ -4,7 +4,6 @@ import { useThemeContext } from "../../hooks/useThemeContext";
 
 const Theme = () => {
   const { theme, toggleTheme } = useThemeContext();
-  console.log("yese", theme);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

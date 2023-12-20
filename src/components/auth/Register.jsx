@@ -5,15 +5,22 @@ import ActionPassword from "./ActionPassword";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
 import { register } from "../../utils/local-data";
+import { useChangeLanguage } from "../../hooks/useChangeLanguage";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { language } = useChangeLanguage();
   const [name, setName] = useInput("");
   const [email, setEmail] = useInput("");
   const [password, setPassword] = useInput("");
   const [confirmPassword, setConfirmPassword] = useInput("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const title = language === "id" ? "Daftar" : "Register";
+  const description =
+    language === "id"
+      ? "Isi form untuk mendaftar akun"
+      : "Fiil in the form to register";
 
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +36,10 @@ const Register = () => {
     setLoading(true);
     event.preventDefault();
     if (password !== confirmPassword) {
-      alert("Password no match");
+      const messageWarning =
+        language === "id" ? "Password tidak sama" : "Password no match";
+      alert(messageWarning);
+      event.preventDefault();
       return;
     }
 
@@ -48,12 +58,11 @@ const Register = () => {
         <Navbar />
         <div className="wrapper-register">
           <form onSubmit={userRegister} className="form-register">
-            <Header
-              title="Register"
-              description="Isi form untuk mendaftar akun"
-            />
+            <Header title={title} description={description} />
             <div className="input">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">
+                {language === "id" ? "Nama" : "Name"}
+              </label>
               <input
                 type="text"
                 id="name"
@@ -110,12 +119,14 @@ const Register = () => {
                 />
               </div>
             </div>
-            <button type="submit">
-              {loading ? "Loading . . ." : "Register"}
-            </button>
+            <button type="submit">{loading ? "Loading . . ." : title}</button>
           </form>
           <p className="keterangan-register">
-            sudah punya akun?{""} <Link to="/login">Login</Link>
+            {language === "id"
+              ? "sudah punya akun?"
+              : "already have an account"}
+            {""}{" "}
+            <Link to="/login">{language === "id" ? "Gabung" : "Login"}</Link>
           </p>
         </div>
       </div>

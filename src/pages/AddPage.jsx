@@ -2,21 +2,29 @@ import { useNavigate } from "react-router-dom";
 import Form from "../components/noted/Form";
 import { useState } from "react";
 import { addNote } from "../utils/local-data";
+import { add } from "../utils/content-bahasa";
 import BackHome from "../components/BackHome";
 import LayoutNoted from "../Layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
+import { useChangeLanguage } from "../hooks/useChangeLanguage";
 
 const AddPage = () => {
+  const { language } = useChangeLanguage();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
   const submitAddNoted = (e) => {
+    e.preventDefault();
     if (!title || !body) {
-      alert("Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan.");
+      const messageWarning =
+        language === "id"
+          ? "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
+          : "Input cannot be empty. Please make sure to fill in the Title and Notes.";
+      alert(messageWarning);
+      e.preventDefault();
       return;
     }
-    e.preventDefault();
     addNote({
       title,
       body,
@@ -26,10 +34,20 @@ const AddPage = () => {
 
   return (
     <>
-      <HeaderBanner title="Add Noted Apps" description="Buat catatan pribadi Anda dengan mudah. Isilah form di bawah untuk menambahkan catatan baru." />
+      <HeaderBanner
+        title={add[language].title}
+        description={add[language].description}
+      />
       <LayoutNoted>
         <BackHome />
-        <Form page="Add" title={title} setTitle={setTitle} body={body} setBody={setBody} submitNoted={submitAddNoted} />
+        <Form
+          page="Add"
+          title={title}
+          setTitle={setTitle}
+          body={body}
+          setBody={setBody}
+          submitNoted={submitAddNoted}
+        />
       </LayoutNoted>
     </>
   );

@@ -2,6 +2,8 @@ import React from "react";
 import Theme from "./Theme";
 import { FaLanguage, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { ThemeContextProvider } from "../../contexts/ThemeContext";
+import Language from "./Language";
 
 const Navbar = () => {
   const navigate = useNavigate("");
@@ -12,10 +14,10 @@ const Navbar = () => {
   return (
     <nav className="container">
       <div className="wrapper-navbar">
-        <button title="ubah bahasa">
-          <FaLanguage />
-        </button>
-        <Theme />
+        <Language />
+        <ThemeContextProvider>
+          <Theme />
+        </ThemeContextProvider>
         <div className="user-info">
           <button title="logout" onClick={onHandlerLogout}>
             <FaArrowRight />

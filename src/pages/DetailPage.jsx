@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { getNote } from "../utils/local-data";
+import { detail } from "../utils/content-bahasa";
 import { Link, useParams } from "react-router-dom";
-import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
+import {
+  FaTrash,
+  FaArrowCircleDown,
+  FaArrowAltCircleUp,
+  FaHome,
+  FaPencilAlt,
+} from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 import LayoutNoted from "../Layout/LayoutNoted";
 import BackHome from "../components/BackHome";
 import HeaderBanner from "../components/HeaderBanner";
 import CardDetail from "../components/noted/CardDetail";
+import { useChangeLanguage } from "../hooks/useChangeLanguage";
 
 const DetailPage = () => {
+  const { language } = useChangeLanguage();
   const { id } = useParams();
   const navigate = useNavigate();
   const [detailNote, setDetailNote] = useState({});
@@ -25,7 +34,10 @@ const DetailPage = () => {
 
   return (
     <>
-      <HeaderBanner title="Detail Noted Apps" description="Lihat dan kelola detail catatan Anda di halaman Detail Noted Apps. Temukan informasi lengkap mengenai catatan yang Anda pilih." />
+      <HeaderBanner
+        title={detail[language].title}
+        description={detail[language].description}
+      />
       <LayoutNoted>
         <section className="Catatan-shelf">
           <BackHome />
@@ -33,7 +45,7 @@ const DetailPage = () => {
         </section>
         <div className="wrapper-icon-delete-archive">
           <div
-            title="Hapus"
+            title={language === "id" ? "Hapus" : "Delete"}
             className="delete"
             onClick={() => {
               deleteNote(id);
@@ -44,7 +56,7 @@ const DetailPage = () => {
           </div>
           {detailNote.archived == true ? (
             <div
-              title="Aktifkan"
+              title={language === "id" ? "Aktifkan" : "Activate"}
               className="archive"
               onClick={() => {
                 unarchiveNote(id);
@@ -55,7 +67,7 @@ const DetailPage = () => {
             </div>
           ) : (
             <div
-              title="Arsipkan"
+              title={language === "id" ? "Arsipkan" : "Archive"}
               className="archive"
               onClick={() => {
                 archiveNote(id);
@@ -66,7 +78,11 @@ const DetailPage = () => {
             </div>
           )}
 
-          <Link to={`/edit/${id}`} title="Edit" className="delete">
+          <Link
+            to={`/edit/${id}`}
+            title={language === "id" ? "Sunting" : "Edit"}
+            className="delete"
+          >
             <FaPencilAlt />
           </Link>
         </div>

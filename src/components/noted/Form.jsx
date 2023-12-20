@@ -3,10 +3,16 @@ import PropTypes from "prop-types";
 import { FaClosedCaptioning } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { getNote } from "../../utils/local-data";
+import { useChangeLanguage } from "../../hooks/useChangeLanguage";
 
 const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
+  const { language } = useChangeLanguage();
   const { id } = useParams();
   const [detailNote, setDetailNote] = useState({});
+  const labelJudul = language === "id" ? "Judul" : "Title";
+  const labelCatatan = language === "id" ? "Catatan" : "Noted";
+  const labelAdd = language === "id" ? "Buat" : "Create";
+  const labelEdit = language === "id" ? "Simpan Perubahan" : "Save Changes";
 
   const bodyRef = useRef();
   useEffect(() => {
@@ -29,25 +35,31 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
         <form id="inputCatatan" onSubmit={submitNoted}>
           <div className="input">
             <div className="label-judul">
-              <label htmlFor="inputCatatanTitle">Judul</label>
+              <label htmlFor="inputCatatanTitle">{labelJudul}</label>
             </div>
             <input
               id="inputCatatanTitle"
               type="text"
               required
-              placeholder="Tulis judul catatan"
+              placeholder={
+                language === "id" ? "Tulis judul catatan" : "Write title noted"
+              }
               value={title ? title : title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="input">
-            <label htmlFor="inputCatatanCatatan">Catatan</label>
+            <label htmlFor="inputCatatanCatatan">{labelCatatan}</label>
             {page == "Edit" ? (
               <div
                 id="inputCatatanCatatan"
                 ref={bodyRef}
                 className="catatan"
-                data-placeholder="Tulis catatan Anda disini...."
+                data-placeholder={
+                  language === "id"
+                    ? "Tulis catatan Anda disini...."
+                    : "Write noted here...."
+                }
                 contentEditable
                 onInput={(e) => setBody(e.target.innerHTML)}
               ></div>
@@ -63,12 +75,16 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
           </div>
 
           <button id="CatatanSubmit" type="submit">
-            {page == "Add" ? "Buat" : null}
-            {page == "Edit" ? "Simpan Edit" : null}
+            {page == "Add" ? labelAdd : null}
+            {page == "Edit" ? labelEdit : null}
           </button>
 
           {page == "Edit" ? (
-            <Link title="Batal" to="/" className="wrapper-icon-plus">
+            <Link
+              title={language == "id" ? "Batal" : "Cancel"}
+              to="/"
+              className="wrapper-icon-plus"
+            >
               <FaClosedCaptioning className="icon-plus" />
             </Link>
           ) : null}

@@ -10,12 +10,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import EditPage from "./pages/EditPage";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import { ThemeContextProvider } from "./contexts/ThemeContext";
-import { useThemeContext } from "./hooks/useThemeContext";
+import { ChangeLanguageContextProvider } from "./contexts/ChangeLanguageContext";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <ThemeContextProvider>
+  <ChangeLanguageContextProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -29,5 +28,5 @@ root.render(
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
-  </ThemeContextProvider>
+  </ChangeLanguageContextProvider>
 );

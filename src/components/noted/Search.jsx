@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { useChangeLanguage } from "../../hooks/useChangeLanguage";
 
 const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
+  const { language } = useChangeLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   let keyword = searchParams.get("keyword");
   const changeSearchParams = (keyword) => {
@@ -32,16 +34,22 @@ const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
     <div className="container">
       <div className="wrapper-search">
         <section className="search-section">
-          <label htmlFor="searchCatatanTitle">Judul</label>
+          <label htmlFor="searchCatatanTitle">
+            {language === "id" ? "Judul" : "Title"}
+          </label>
           <input
             id="searchCatatanTitle"
-            placeholder="Cari berdasarkan Judul .... "
+            placeholder={
+              language === "id"
+                ? "Cari berdasarkan Judul ...."
+                : "Search by title ...."
+            }
             type="search"
             value={keyword ? keyword : ""}
             onChange={handleKeywordChange}
           />
           <button id="searchSubmit" type="submit">
-            Cari
+            {language === "id" ? "Cari" : "Search"}
           </button>
           {titleArsip ? (
             <Link to="/archives" className="btn btn-archives">
