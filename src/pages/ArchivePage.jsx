@@ -17,22 +17,18 @@ function ArchivePage() {
       setNoted(data);
       console.log(data, "res");
     })();
+    return () => {
+      setNoted(null);
+    };
   }, []);
 
   return (
     <>
-      <HeaderBanner
-        title="Archive Noted Apps"
-        description="Simpan dan kelola catatan Anda dengan Archive Noted Apps. Lihat dan kelola catatan yang sudah diarsipkan di sini."
-      />
+      <HeaderBanner title="Archive Noted Apps" description="Simpan dan kelola catatan Anda dengan Archive Noted Apps. Lihat dan kelola catatan yang sudah diarsipkan di sini." />
       <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} />
       <LayoutNoted>
         <BackHome />
-        <Card
-          noted={noted}
-          messageError="Arsip kosong"
-          path="/archives/notes"
-        />
+        <Card noted={noted} messageError="Arsip kosong" path="/archives/notes" />
       </LayoutNoted>
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar/Navbar";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ const NotFoundPage = () => {
   };
   return (
     <div className="container">
+      <Navbar />
       <section className="container-error">
         <img className="ops" src="/404.svg" />
         <br />

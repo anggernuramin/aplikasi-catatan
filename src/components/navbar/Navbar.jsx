@@ -1,5 +1,6 @@
 import React from "react";
-import { FaLanguage, FaMoon, FaSun, FaArrowRight } from "react-icons/fa";
+import Theme from "./Theme";
+import { FaLanguage, FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -14,9 +15,7 @@ const Navbar = () => {
         <button title="ubah bahasa">
           <FaLanguage />
         </button>
-        <button title="ubah tema">
-          <FaMoon />
-        </button>
+        <Theme />
         <div className="user-info">
           <button title="logout" onClick={onHandlerLogout}>
             <FaArrowRight />
