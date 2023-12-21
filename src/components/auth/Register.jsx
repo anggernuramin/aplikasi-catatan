@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Navbar from "../navbar/Navbar";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import ActionPassword from "./ActionPassword";
 import { Link, useNavigate } from "react-router-dom";
@@ -59,7 +58,6 @@ const Register = () => {
   return (
     <>
       <div className="container-register">
-        <Navbar />
         <div className="wrapper-register">
           <form onSubmit={userRegister} className="form-register">
             <Header title={title} description={description} />

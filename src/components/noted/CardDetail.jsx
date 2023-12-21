@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { showFormattedDate } from "../../utils";
+import Loading from "../Loading";
 import parse from "html-react-parser";
 
 const CardDetail = ({ detailNoted }) => {
@@ -13,9 +14,16 @@ const CardDetail = ({ detailNoted }) => {
   }, [detailNoted]);
   return (
     <div className="card-detail-catatan">
-      <h3>{detailNoted?.title}</h3>
-      <span>{showFormattedDate(detailNoted?.createdAt)}</span>
-      <p>{typeof body == "string" ? parse(body) : body}</p>
+      {Object.keys(detailNoted).length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          {" "}
+          <h3>{detailNoted?.title}</h3>
+          <span>{showFormattedDate(detailNoted?.createdAt)}</span>
+          <p>{typeof body == "string" ? parse(body) : body}</p>
+        </>
+      )}
     </div>
   );
 };

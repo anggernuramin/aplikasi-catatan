@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const AuthprivateRoute = (Component) => {
   return () => {
@@ -18,6 +19,10 @@ const AuthprivateRoute = (Component) => {
 
     return <Component />;
   };
+};
+
+AuthprivateRoute.propTypes = {
+  Component: PropTypes.node.isRequired,
 };
 
 export default AuthprivateRoute;

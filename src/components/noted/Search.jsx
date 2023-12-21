@@ -20,11 +20,7 @@ const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
 
   useEffect(() => {
     if (keyword) {
-      setNoted(
-        dataNotedOriginal.filter((item) =>
-          item.title.toLowerCase().includes(keyword.toLocaleLowerCase())
-        )
-      );
+      setNoted(dataNotedOriginal.filter((item) => item.title.toLowerCase().includes(keyword.toLocaleLowerCase())));
     } else {
       setNoted(dataNotedOriginal);
     }
@@ -34,20 +30,8 @@ const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
     <div className="container">
       <div className="wrapper-search">
         <section className="search-section">
-          <label htmlFor="searchCatatanTitle">
-            {language === "id" ? "Judul" : "Title"}
-          </label>
-          <input
-            id="searchCatatanTitle"
-            placeholder={
-              language === "id"
-                ? "Cari berdasarkan Judul ...."
-                : "Search by title ...."
-            }
-            type="search"
-            value={keyword ? keyword : ""}
-            onChange={handleKeywordChange}
-          />
+          <label htmlFor="searchCatatanTitle">{language === "id" ? "Judul" : "Title"}</label>
+          <input id="searchCatatanTitle" placeholder={language === "id" ? "Cari berdasarkan Judul ...." : "Search by title ...."} type="search" value={keyword ? keyword : ""} onChange={handleKeywordChange} />
           <button id="searchSubmit" type="submit">
             {language === "id" ? "Cari" : "Search"}
           </button>
@@ -66,7 +50,7 @@ const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
 Search.propTypes = {
   titleArsip: PropTypes.string,
   setNoted: PropTypes.func.isRequired,
-  dataNoted: PropTypes.array.isRequired,
+  dataNotedOriginal: PropTypes.array.isRequired,
 };
 
 export default Search;

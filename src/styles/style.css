@@ -331,7 +331,6 @@ header .container {
 
 .user-info span {
   color: var(--color-icon);
-
   font-size: 20px;
   font-weight: 500;
 }
@@ -664,6 +663,10 @@ header .container {
   height: 50px;
   display: grid;
   animation: s4 4s infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .custom-loader::before,
 .custom-loader::after {
@@ -717,6 +720,9 @@ header .container {
   .container-error h3 {
     font-size: 14px;
   }
+  .user-info span {
+    font-size: 17px;
+  }
   header .container {
     height: 300px;
   }
@@ -767,6 +773,7 @@ header .container {
     padding: 0;
     width: 100%;
   }
+
   .btn-archives {
     margin-top: 0;
     width: 500px;

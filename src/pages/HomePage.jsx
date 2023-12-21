@@ -9,15 +9,18 @@ import LayoutNoted from "../layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Search from "../components/noted/Search";
 import Card from "../components/noted/Card";
+import Loading from "../components/Loading";
 
 const HomePage = () => {
   const { language } = useChangeLanguage();
   const [noted, setNoted] = useState([]);
   const [dataNotedOriginal, setDataNotedOriginal] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       const { data } = await getActiveNotes();
+      setLoading(true);
       setDataNotedOriginal(data);
       setNoted(data);
       console.log(data, "res");
@@ -27,7 +30,7 @@ const HomePage = () => {
       setDataNotedOriginal(null);
       setNoted(null);
     };
-  }, []);
+  }, [loading]);
 
   return (
     <>
@@ -37,7 +40,7 @@ const HomePage = () => {
       />
       <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} titleArsip={language === "id" ? "Lihat Note Arsip" : "View Archived Notes"} />
       <LayoutNoted>
-        <Card noted={noted} messageError={language === "id" ? "Tidak ada catatan" : "No notes available."} path="/notes" />
+        {!loading ? <Loading /> : <Card noted={noted} messageError={language === "id" ? "Tidak ada catatan" : "No notes available."} path="/notes" />}
         <Link title="Tambah" to="/notes/new" className="wrapper-icon-plus">
           <FaPlus className="icon-plus" />
         </Link>

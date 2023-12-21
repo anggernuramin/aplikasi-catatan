@@ -15,13 +15,15 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
   const labelEdit = language === "id" ? "Simpan Perubahan" : "Save Changes";
 
   const bodyRef = useRef();
-  useEffect(() => {
-    (async () => {
-      const { data } = await getNote(id);
-      setDetailNote(data);
-      console.log(data, "res");
-    })();
-  }, [id]);
+  if (page === "Edit") {
+    useEffect(() => {
+      (async () => {
+        const { data } = await getNote(id);
+        setDetailNote(data);
+        console.log(data, "res");
+      })();
+    }, [id]);
+  }
 
   useEffect(() => {
     if (detailNote && page == "Edit") {
@@ -37,16 +39,7 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
             <div className="label-judul">
               <label htmlFor="inputCatatanTitle">{labelJudul}</label>
             </div>
-            <input
-              id="inputCatatanTitle"
-              type="text"
-              required
-              placeholder={
-                language === "id" ? "Tulis judul catatan" : "Write title noted"
-              }
-              value={title ? title : title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
+            <input id="inputCatatanTitle" type="text" required placeholder={language === "id" ? "Tulis judul catatan" : "Write title noted"} value={title ? title : title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="input">
             <label htmlFor="inputCatatanCatatan">{labelCatatan}</label>
@@ -55,22 +48,12 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
                 id="inputCatatanCatatan"
                 ref={bodyRef}
                 className="catatan"
-                data-placeholder={
-                  language === "id"
-                    ? "Tulis catatan Anda disini...."
-                    : "Write noted here...."
-                }
+                data-placeholder={language === "id" ? "Tulis catatan Anda disini...." : "Write noted here...."}
                 contentEditable
                 onInput={(e) => setBody(e.target.innerHTML)}
               ></div>
             ) : (
-              <div
-                id="inputCatatanCatatan"
-                className="catatan"
-                data-placeholder="Tulis catatan Anda disini...."
-                contentEditable
-                onInput={(e) => setBody(e.target.innerHTML)}
-              ></div>
+              <div id="inputCatatanCatatan" className="catatan" data-placeholder="Tulis catatan Anda disini...." contentEditable onInput={(e) => setBody(e.target.innerHTML)}></div>
             )}
           </div>
 
@@ -80,11 +63,7 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
           </button>
 
           {page == "Edit" ? (
-            <Link
-              title={language == "id" ? "Batal" : "Cancel"}
-              to="/"
-              className="wrapper-icon-plus"
-            >
+            <Link title={language == "id" ? "Batal" : "Cancel"} to="/" className="wrapper-icon-plus">
               <FaClosedCaptioning className="icon-plus" />
             </Link>
           ) : null}
