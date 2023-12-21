@@ -10,23 +10,26 @@ import NotFoundPage from "./pages/NotFoundPage";
 import EditPage from "./pages/EditPage";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import { ChangeLanguageContextProvider } from "./contexts/ChangeLanguageContext";
+import { LanguageContextProvider } from "./contexts/LanguageContext";
+import { AuthUserContextProvider } from "./contexts/AuthUserContext";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <ChangeLanguageContextProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/notes/new" element={<AddPage />} />
-        <Route path="/notes/:id" element={<DetailPage />} />
-        <Route path="/edit/:id" element={<EditPage />} />
-        <Route path="/archives" element={<ArchivePage />} />
-        <Route path="/archives/notes/:id" element={<DetailPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
-  </ChangeLanguageContextProvider>
+  <LanguageContextProvider>
+    <AuthUserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/notes/new" element={<AddPage />} />
+          <Route path="/notes/:id" element={<DetailPage />} />
+          <Route path="/edit/:id" element={<EditPage />} />
+          <Route path="/archives" element={<ArchivePage />} />
+          <Route path="/archives/notes/:id" element={<DetailPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthUserContextProvider>
+  </LanguageContextProvider>
 );

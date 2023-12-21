@@ -1,11 +1,9 @@
 import { createContext, useMemo, useState } from "react";
 
-export const ChangeLanguageContext = createContext();
+export const LanguageContext = createContext();
 
-export const ChangeLanguageContextProvider = ({ children }) => {
-  const [language, setLanguage] = useState(
-    localStorage.getItem("language") || "id"
-  );
+export const LanguageContextProvider = ({ children }) => {
+  const [language, setLanguage] = useState(localStorage.getItem("language") || "id");
 
   const toggleLanguage = () =>
     setLanguage((prevState) => {
@@ -21,9 +19,5 @@ export const ChangeLanguageContextProvider = ({ children }) => {
     };
   }, [language]);
 
-  return (
-    <ChangeLanguageContext.Provider value={initialState}>
-      {children}
-    </ChangeLanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={initialState}>{children}</LanguageContext.Provider>;
 };

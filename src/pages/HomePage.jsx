@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { getActiveNotes } from "../utils/local-data";
-import LayoutNoted from "../Layout/LayoutNoted";
+import { useChangeLanguage } from "../hooks/useChangeLanguage";
+import { home } from "../utils/content-bahasa";
+import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import LayoutNoted from "../layout/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Search from "../components/noted/Search";
 import Card from "../components/noted/Card";
-import { useChangeLanguage } from "../hooks/useChangeLanguage";
-import { home } from "../utils/content-bahasa";
 
 const HomePage = () => {
   const { language } = useChangeLanguage();
@@ -23,6 +24,7 @@ const HomePage = () => {
     })();
 
     return () => {
+      setDataNotedOriginal(null);
       setNoted(null);
     };
   }, []);
@@ -33,21 +35,9 @@ const HomePage = () => {
         title={home[language].title} //gunakan property accessor [] agar data bisa dinamis sesuai bahasa / home.language.title
         description={home[language].description}
       />
-      <Search
-        setNoted={setNoted}
-        dataNotedOriginal={dataNotedOriginal}
-        titleArsip={
-          language === "id" ? "Lihat Note Arsip" : "View Archived Notes"
-        }
-      />
+      <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} titleArsip={language === "id" ? "Lihat Note Arsip" : "View Archived Notes"} />
       <LayoutNoted>
-        <Card
-          noted={noted}
-          messageError={
-            language === "id" ? "Tidak ada catatan" : "No notes available."
-          }
-          path="/notes"
-        />
+        <Card noted={noted} messageError={language === "id" ? "Tidak ada catatan" : "No notes available."} path="/notes" />
         <Link title="Tambah" to="/notes/new" className="wrapper-icon-plus">
           <FaPlus className="icon-plus" />
         </Link>
@@ -56,4 +46,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AuthprivateRoute(HomePage);

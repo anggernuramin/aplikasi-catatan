@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { useThemeContext } from "../../hooks/useThemeContext";
+import { useThemeContext } from "../../hooks/useTheme";
 
 const Theme = () => {
   const { theme, toggleTheme } = useThemeContext();

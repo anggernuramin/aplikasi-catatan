@@ -273,4 +273,18 @@ async function deleteNote(id) {
   return { error: false, data: responseJson.data };
 }
 
+async function EditNote({ title, body }) {
+  const response = await fetchWithToken(`${BASE_URL}/notes/`, {
+    method: "POST",
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
 export { getAccessToken, putAccessToken, login, register, getUserLogged, addNote, getActiveNotes, getArchivedNotes, getNote, archiveNote, unarchiveNote, deleteNote };
