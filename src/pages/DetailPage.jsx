@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getNote } from "../utils/local-data";
 import { detail } from "../utils/content-bahasa";
 import { Link, useParams } from "react-router-dom";
-import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
+import {
+  FaTrash,
+  FaArrowCircleDown,
+  FaArrowAltCircleUp,
+  FaHome,
+  FaPencilAlt,
+} from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
 import LayoutNoted from "../layout/LayoutNoted";
@@ -11,8 +17,10 @@ import HeaderBanner from "../components/HeaderBanner";
 import CardDetail from "../components/noted/CardDetail";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
 import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import Loading from "../components/Loading";
 
 const DetailPage = () => {
+  const [loading, setLoading] = useState(false);
   const { language } = useChangeLanguage();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,6 +30,7 @@ const DetailPage = () => {
     (async () => {
       const { data } = await getNote(id);
       if (data) {
+        setLoading(true);
         setDetailNote(data);
       }
     })();
@@ -29,11 +38,14 @@ const DetailPage = () => {
 
   return (
     <>
-      <HeaderBanner title={detail[language].title} description={detail[language].description} />
+      <HeaderBanner
+        title={detail[language].title}
+        description={detail[language].description}
+      />
       <LayoutNoted>
         <section className="Catatan-shelf">
           <BackHome />
-          <CardDetail detailNoted={detailNote} />
+          {!loading ? <Loading /> : <CardDetail detailNoted={detailNote} />}
         </section>
         <div className="wrapper-icon-delete-archive">
           <div
@@ -70,7 +82,11 @@ const DetailPage = () => {
             </div>
           )}
 
-          <Link to={`/edit/${id}`} title={language === "id" ? "Sunting" : "Edit"} className="delete">
+          <Link
+            to={`/edit/${id}`}
+            title={language === "id" ? "Sunting" : "Edit"}
+            className="delete"
+          >
             <FaPencilAlt />
           </Link>
         </div>
@@ -79,4 +95,4 @@ const DetailPage = () => {
   );
 };
 
-export default AuthprivateRoute(DetailPage);
+export default DetailPage;

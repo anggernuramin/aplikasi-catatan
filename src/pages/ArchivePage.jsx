@@ -8,8 +8,10 @@ import Search from "../components/noted/Search";
 import Card from "../components/noted/Card";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
 import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import Loading from "../components/Loading";
 
 function ArchivePage() {
+  const [loading, setLoading] = useState(false);
   const { language } = useChangeLanguage();
   const [noted, setNoted] = useState([]);
   const [dataNotedOriginal, setDataNotedOriginal] = useState([]);
@@ -17,6 +19,7 @@ function ArchivePage() {
   useEffect(() => {
     (async () => {
       const { data } = await getArchivedNotes();
+      setLoading(true);
       setDataNotedOriginal(data);
       setNoted(data);
       console.log(data, "res");
@@ -28,14 +31,25 @@ function ArchivePage() {
 
   return (
     <>
-      <HeaderBanner title={archive[language].title} description={archive[language].description} />
+      <HeaderBanner
+        title={archive[language].title}
+        description={archive[language].description}
+      />
       <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} />
       <LayoutNoted>
         <BackHome />
-        <Card noted={noted} messageError={language === "id" ? "Arsip kosong" : "Empty Archive"} path="/archives/notes" />
+        {!loading ? (
+          <Loading />
+        ) : (
+          <Card
+            noted={noted}
+            messageError={language === "id" ? "Arsip kosong" : "Empty Archive"}
+            path="/archives/notes"
+          />
+        )}
       </LayoutNoted>
     </>
   );
 }
 
-export default AuthprivateRoute(ArchivePage);
+export default ArchivePage;

@@ -1,5 +1,9 @@
 import { createContext, useEffect, useMemo, useState } from "react";
-import { getAccessToken, getUserLogged, putAccessToken } from "../utils/local-data";
+import {
+  getAccessToken,
+  getUserLogged,
+  putAccessToken,
+} from "../utils/local-data";
 
 export const AuthUserContext = createContext();
 
@@ -8,12 +12,9 @@ export const AuthUserContextProvider = ({ children }) => {
 
   const fetchUser = async () => {
     const { data } = await getUserLogged();
+    // console.log("data", await data);
     if (data) {
-    console.log(user, "token ada");
       setUser(data);
-    } else {
-    console.log(user, "token tidak ada");
-      setUser(null);
     }
   };
   useEffect(() => {
@@ -23,7 +24,9 @@ export const AuthUserContextProvider = ({ children }) => {
   const onLoginSuccess = async ({ accessToken }) => {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
-    setUser(data);
+    if (data) {
+      setUser(data);
+    }
   };
 
   const initialState = useMemo(() => {
@@ -34,5 +37,9 @@ export const AuthUserContextProvider = ({ children }) => {
     };
   }, [user]);
 
-  return <AuthUserContext.Provider value={initialState}>{children}</AuthUserContext.Provider>;
+  return (
+    <AuthUserContext.Provider value={initialState}>
+      {children}
+    </AuthUserContext.Provider>
+  );
 };

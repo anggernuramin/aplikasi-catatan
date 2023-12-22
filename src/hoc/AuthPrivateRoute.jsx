@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { getAccessToken } from "../utils/local-data";
 
 const AuthprivateRoute = (Component) => {
   return () => {
@@ -9,13 +10,13 @@ const AuthprivateRoute = (Component) => {
     const { user } = useUser();
 
     useEffect(() => {
-      if (!user) {
+      if (!getAccessToken()) {
         console.log("user private tidak ada", user);
         navigate("/login");
       } else {
         console.log("user private ada", user);
       }
-    }, [user]);
+    }, []);
 
     return <Component />;
   };
