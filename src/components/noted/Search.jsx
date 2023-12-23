@@ -16,7 +16,6 @@ const Search = ({ setNoted, dataNotedOriginal, titleArsip }) => {
     keyword = e.target.value;
     changeSearchParams(keyword);
   };
-  console.log("dt", dataNotedOriginal);
 
   useEffect(() => {
     if (keyword) {

@@ -16,31 +16,24 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const title = language === "id" ? "Gabung" : "Login";
-  const description =
-    language === "id"
-      ? "Yuk, login untuk menggunakan aplikasi."
-      : "Come on, Login to use the application";
+  const description = language === "id" ? "Yuk, login untuk menggunakan aplikasi." : "Come on, Login to use the application";
 
   const onShowHandlerPassword = () => {
     setShowPassword((prevState) => !prevState);
   };
 
   useEffect(() => {
-    // const token = localStorage.getItem("accessToken");
-    // if (token) {
-    //   console.log("token ada");
-    //   navigate("/");
-    // } else {
-    //   console.log("token tidak ada");
-    // }
+    const token = getAccessToken();
+    if (token) {
+      navigate("/");
+    }
   }, []);
 
   async function userLogin(event) {
     setLoading(true);
     event.preventDefault();
     if (!password || !email) {
-      const messageWarning =
-        language === "id" ? "Tidak Boleh Kosong" : "Not Empty";
+      const messageWarning = language === "id" ? "Tidak Boleh Kosong" : "Not Empty";
       setLoading(false);
       alert(messageWarning);
       event.preventDefault();
@@ -64,40 +57,19 @@ const Login = () => {
 
           <div className="input">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              required
-              onChange={setEmail}
-              value={email}
-              id="email"
-              name="email"
-            />
+            <input type="email" required onChange={setEmail} value={email} id="email" name="email" />
           </div>
           <div className="input">
             <label htmlFor="password">Password</label>
             <div className="input-password">
-              <input
-                type={showPassword ? "text" : "password"}
-                required
-                autoComplete="true"
-                id="password"
-                name="password"
-                onChange={setPassword}
-                value={password}
-              />
-              <ActionPassword
-                showPassword={showPassword}
-                onShowHandlerPassword={onShowHandlerPassword}
-              />
+              <input type={showPassword ? "text" : "password"} required autoComplete="true" id="password" name="password" onChange={setPassword} value={password} />
+              <ActionPassword showPassword={showPassword} onShowHandlerPassword={onShowHandlerPassword} />
             </div>
           </div>
           <button type="submit">{loading ? "Loading . . ." : title}</button>
         </form>
         <p className="keterangan-register">
-          {language === "id" ? "Belun punya akun?" : "don't have an account?"}{" "}
-          <Link to="/register">
-            {language === "id" ? "Daftar disini" : "Register here"}
-          </Link>
+          {language === "id" ? "Belun punya akun?" : "don't have an account?"} <Link to="/register">{language === "id" ? "Daftar disini" : "Register here"}</Link>
         </p>
       </div>
     </div>

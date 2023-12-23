@@ -3,9 +3,8 @@ import Header from "./Header";
 import ActionPassword from "./ActionPassword";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
-import { register } from "../../utils/local-data";
+import { register, getAccessToken } from "../../utils/local-data";
 import { useChangeLanguage } from "../../hooks/useChangeLanguage";
-import { useUser } from "../../hooks/useUser";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,13 +19,13 @@ const Register = () => {
   const description = language === "id" ? "Isi form untuk mendaftar akun" : "Fiil in the form to register";
 
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
-    if (user) {
+    const token = getAccessToken();
+    if (token) {
       navigate("/");
     }
-  }, [user]);
+  }, []);
 
   const onShowHandlerPassword = () => {
     setShowPassword((prevState) => !prevState);

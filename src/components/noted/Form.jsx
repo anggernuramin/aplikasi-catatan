@@ -20,7 +20,6 @@ const Form = ({ page, title, setTitle, setBody, submitNoted }) => {
       (async () => {
         const { data } = await getNote(id);
         setDetailNote(data);
-        console.log(data, "res");
       })();
     }, [id]);
   }

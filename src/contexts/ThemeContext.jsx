@@ -9,7 +9,7 @@ export const ThemeContextProvider = ({ children }) => {
     setTheme((prevState) => {
       const newTheme = prevState == "light" ? "dark" : "light";
       localStorage.setItem("theme", newTheme);
-      return newTheme; // mengembakikan dengan nilai state terbaru
+      return newTheme; // mengembalikan dengan nilai state terbaru
     });
 
   const initialState = {
@@ -17,9 +17,5 @@ export const ThemeContextProvider = ({ children }) => {
     toggleTheme,
   };
 
-  return (
-    <ThemeContext.Provider value={initialState}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={initialState}>{children}</ThemeContext.Provider>;
 };

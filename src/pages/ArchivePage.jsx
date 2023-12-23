@@ -22,7 +22,6 @@ function ArchivePage() {
       setLoading(true);
       setDataNotedOriginal(data);
       setNoted(data);
-      console.log(data, "res");
     })();
     return () => {
       setNoted(null);
@@ -31,25 +30,14 @@ function ArchivePage() {
 
   return (
     <>
-      <HeaderBanner
-        title={archive[language].title}
-        description={archive[language].description}
-      />
+      <HeaderBanner title={archive[language].title} description={archive[language].description} />
       <Search setNoted={setNoted} dataNotedOriginal={dataNotedOriginal} />
       <LayoutNoted>
         <BackHome />
-        {!loading ? (
-          <Loading />
-        ) : (
-          <Card
-            noted={noted}
-            messageError={language === "id" ? "Arsip kosong" : "Empty Archive"}
-            path="/archives/notes"
-          />
-        )}
+        {!loading ? <Loading /> : <Card noted={noted} messageError={language === "id" ? "Arsip kosong" : "Empty Archive"} path="/archives/notes" />}
       </LayoutNoted>
     </>
   );
 }
 
-export default ArchivePage;
+export default AuthprivateRoute(ArchivePage);
