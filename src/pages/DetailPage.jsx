@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { getNote } from "../utils/local-data";
 import { detail } from "../utils/content-bahasa";
 import { Link, useParams } from "react-router-dom";
-import { FaTrash, FaArrowCircleDown, FaArrowAltCircleUp, FaHome, FaPencilAlt } from "react-icons/fa";
+import {
+  FaTrash,
+  FaArrowCircleDown,
+  FaArrowAltCircleUp,
+  FaHome,
+  FaPencilAlt,
+} from "react-icons/fa";
 import { deleteNote, archiveNote, unarchiveNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
-import LayoutNoted from "../layout/LayoutNoted";
+import LayoutNoted from "../layouts/LayoutNoted";
 import BackHome from "../components/BackHome";
 import HeaderBanner from "../components/HeaderBanner";
 import CardDetail from "../components/noted/CardDetail";
@@ -32,7 +38,10 @@ const DetailPage = () => {
 
   return (
     <>
-      <HeaderBanner title={detail[language].title} description={detail[language].description} />
+      <HeaderBanner
+        title={detail[language].title}
+        description={detail[language].description}
+      />
       <LayoutNoted>
         <section className="Catatan-shelf">
           <BackHome />
@@ -73,7 +82,11 @@ const DetailPage = () => {
             </div>
           )}
 
-          <Link to={`/edit/${id}`} title={language === "id" ? "Sunting" : "Edit"} className="delete">
+          <Link
+            to={`/edit/${id}`}
+            title={language === "id" ? "Sunting" : "Edit"}
+            className="delete"
+          >
             <FaPencilAlt />
           </Link>
         </div>

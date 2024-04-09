@@ -5,7 +5,7 @@ import { addNote } from "../utils/local-data";
 import { add } from "../utils/content-bahasa";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
 import BackHome from "../components/BackHome";
-import LayoutNoted from "../layout/LayoutNoted";
+import LayoutNoted from "../layouts/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import AuthprivateRoute from "../hoc/AuthPrivateRoute";
 
@@ -18,7 +18,10 @@ const AddPage = () => {
   const submitAddNoted = (e) => {
     e.preventDefault();
     if (!title || !body) {
-      const messageWarning = language === "id" ? "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan." : "Input cannot be empty. Please make sure to fill in the Title and Notes.";
+      const messageWarning =
+        language === "id"
+          ? "Input tidak boleh kosong. Pastikan telah mengisi Judul dan Catatan."
+          : "Input cannot be empty. Please make sure to fill in the Title and Notes.";
       alert(messageWarning);
       e.preventDefault();
       return;
@@ -32,10 +35,20 @@ const AddPage = () => {
 
   return (
     <>
-      <HeaderBanner title={add[language].title} description={add[language].description} />
+      <HeaderBanner
+        title={add[language].title}
+        description={add[language].description}
+      />
       <LayoutNoted>
         <BackHome />
-        <Form page="Add" title={title} setTitle={setTitle} body={body} setBody={setBody} submitNoted={submitAddNoted} />
+        <Form
+          page="Add"
+          title={title}
+          setTitle={setTitle}
+          body={body}
+          setBody={setBody}
+          submitNoted={submitAddNoted}
+        />
       </LayoutNoted>
     </>
   );
