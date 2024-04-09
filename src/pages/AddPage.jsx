@@ -7,7 +7,7 @@ import { useChangeLanguage } from "../hooks/useChangeLanguage";
 import BackHome from "../components/BackHome";
 import LayoutNoted from "../layouts/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
-import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import AuthprivateRoute from "../hocs/AuthPrivateRoute";
 
 const AddPage = () => {
   const { language } = useChangeLanguage();

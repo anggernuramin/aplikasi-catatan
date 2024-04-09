@@ -7,7 +7,7 @@ import LayoutNoted from "../layouts/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Form from "../components/noted/Form";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
-import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import AuthprivateRoute from "../hocs/AuthPrivateRoute";
 
 const EditPage = () => {
   const { language } = useChangeLanguage();
