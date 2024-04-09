@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./styles/style.css";
@@ -12,7 +12,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import { LanguageContextProvider } from "./contexts/LanguageContext";
 import { AuthUserContextProvider } from "./contexts/AuthUserContext";
-import LayoutPage from "./layout/LayoutPage";
+import LayoutPage from "../src/Layout/LayoutPage";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
