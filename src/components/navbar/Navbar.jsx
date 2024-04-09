@@ -1,6 +1,6 @@
 import React from "react";
 import Theme from "./Theme";
-import { FaArrowRight } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ThemeContextProvider } from "../../contexts/ThemeContext";
 import Language from "./Language";
@@ -25,7 +25,7 @@ const Navbar = () => {
           {user ? (
             <>
               <button title="logout" onClick={onHandlerLogout}>
-                <FaArrowRight />
+                <FaSignOutAlt />
               </button>
               <span>{user?.name}</span>
             </>
