@@ -12,8 +12,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import { LanguageContextProvider } from "./contexts/LanguageContext";
 import { AuthUserContextProvider } from "./contexts/AuthUserContext";
-import LayoutPage from "./Layout/LayoutPage";
-
+import LayoutPage from "./layout/LayoutPage";
 const root = createRoot(document.getElementById("root"));
 root.render(
   <LanguageContextProvider>
