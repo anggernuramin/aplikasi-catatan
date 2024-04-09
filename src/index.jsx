@@ -12,7 +12,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import { LanguageContextProvider } from "./contexts/LanguageContext";
 import { AuthUserContextProvider } from "./contexts/AuthUserContext";
-// import LayoutPage from "./layout/LayoutPage";
+import LayoutPage from "./layouts/LayoutPage";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
@@ -20,15 +20,17 @@ root.render(
     <AuthUserContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route index element={<HomePage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/notes/:id" element={<DetailPage />} />
-          <Route path="/edit/:id" element={<EditPage />} />
-          <Route path="/archives" element={<ArchivePage />} />
-          <Route path="/archives/notes/:id" element={<DetailPage />} />
-          <Route path="/notes/new" element={<AddPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<LayoutPage />}>
+            <Route index element={<HomePage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/notes/:id" element={<DetailPage />} />
+            <Route path="/edit/:id" element={<EditPage />} />
+            <Route path="/archives" element={<ArchivePage />} />
+            <Route path="/archives/notes/:id" element={<DetailPage />} />
+            <Route path="/notes/new" element={<AddPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthUserContextProvider>

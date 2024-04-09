@@ -16,7 +16,7 @@ import BackHome from "../components/BackHome";
 import HeaderBanner from "../components/HeaderBanner";
 import CardDetail from "../components/noted/CardDetail";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
-import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import AuthprivateRoute from "../hocs/AuthPrivateRoute";
 import Loading from "../components/Loading";
 
 const DetailPage = () => {

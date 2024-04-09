@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
 import { home } from "../utils/content-bahasa";
-import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import AuthprivateRoute from "../hocs/AuthPrivateRoute";
 import LayoutNoted from "../layouts/LayoutNoted";
 import HeaderBanner from "../components/HeaderBanner";
 import Search from "../components/noted/Search";

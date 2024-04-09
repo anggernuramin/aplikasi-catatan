@@ -7,7 +7,7 @@ import HeaderBanner from "../components/HeaderBanner";
 import Search from "../components/noted/Search";
 import Card from "../components/noted/Card";
 import { useChangeLanguage } from "../hooks/useChangeLanguage";
-import AuthprivateRoute from "../hoc/AuthPrivateRoute";
+import AuthprivateRoute from "../hocs/AuthPrivateRoute";
 import Loading from "../components/Loading";
 
 function ArchivePage() {
